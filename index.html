@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você recebeu R$ 110,00 - TikTok Lite</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Montserrat & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ttkBg: '#010101',
+                        ttkCard: '#121212',
+                        ttkCyan: '#00f2fe',
+                        ttkMagenta: '#ff0050',
+                        ttkGold: '#ffcc00',
+                        pixGreen: '#00bdae'
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { 
+                                boxShadow: '0 0 20px rgba(0, 242, 254, 0.6), 0 0 35px rgba(255, 0, 80, 0.6)' 
+                            },
+                            '50%': { 
+                                boxShadow: '0 0 30px rgba(0, 242, 254, 0.9), 0 0 55px rgba(255, 0, 80, 0.9)' 
+                            },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Neon & Glitch Effects */
+        .ttk-neon-text {
+            text-shadow: -2px 0 #00f2fe, 2px 0 #ff0050;
+        }
+        
+        .gold-glow {
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        .gold-border-glow {
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.25);
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gradient Button Background */
+        .btn-gradient {
+            background: linear-gradient(90deg, #ff0050 0%, #00f2fe 100%);
+        }
+
+        .btn-gradient:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="bg-ttkBg text-white font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-ttkMagenta selection:text-white pb-24 sm:pb-10">
+
+    <!-- Header / Navbar Topo -->
+    <header class="w-full bg-black/80 backdrop-filter blur-lg border-b border-white/10 sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <!-- Logo TikTok Lite com Imagem Externa -->
+            <div class="flex items-center space-x-2.5">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl overflow-hidden shadow-lg shadow-ttkMagenta/20">
+                    <img src="https://m.media-amazon.com/images/I/71nm1E5gkYL.png" 
+                         alt="TikTok Lite Logo" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://placehold.co/100x100/ff0050/ffffff?text=TK+Lite'">
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-1">
+                        <span class="font-montserrat font-black text-lg tracking-wider text-white">TikTok</span>
+                        <span class="bg-gradient-to-r from-ttkMagenta to-ttkCyan text-transparent bg-clip-text font-montserrat font-extrabold text-sm">LITE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badge Oficial -->
+            <div class="flex items-center space-x-1.5 bg-white/10 border border-white/15 px-3 py-1 rounded-full text-xs font-semibold text-emerald-400">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>Promoção Oficial</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-md mx-auto px-4 py-6 flex-1 flex flex-col items-center">
+        
+        <!-- Alerta de Urgência / Timer -->
+        <div class="w-full bg-ttkMagenta/15 border border-ttkMagenta/30 rounded-full py-2 px-4 mb-6 flex items-center justify-between text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 text-white/90">
+                <i class="fa-solid fa-clock text-ttkMagenta animate-bounce"></i>
+                <span>Oferta expira em:</span>
+            </div>
+            <div class="font-mono font-bold text-ttkGold text-base tracking-wider" id="timer">
+                09:59
+            </div>
+        </div>
+
+        <!-- Card Principal da Recompensa -->
+        <div class="w-full glass-card rounded-3xl p-6 mb-6 text-center relative overflow-hidden gold-border-glow border-t-2 border-t-ttkGold/50">
+            <!-- Efeito de Luz de Fundo -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-ttkGold/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-10 w-40 h-40 bg-ttkMagenta/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Ícone Circular com a Imagem do TikTok Lite -->
+            <div class="relative w-24 h-24 mx-auto mb-4 animate-float">
+                <div class="w-full h-full rounded-full p-1 bg-gradient-to-tr from-ttkMagenta via-ttkGold to-ttkCyan shadow-xl shadow-ttkCyan/30">
+                    <img src="https://m.media-amazon.com/images/I/71nm1E5gkYL.png" 
+                         alt="TikTok Lite Icon" 
+                         class="w-full h-full object-cover rounded-full border-2 border-black"
+                         onerror="this.src='https://placehold.co/200x200/ff0050/ffffff?text=TK+Lite'">
+                </div>
+                <span class="absolute -bottom-1 -right-1 bg-ttkCyan text-black p-1.5 rounded-full text-xs font-black shadow-md">
+                    <i class="fa-solid fa-check"></i>
+                </span>
+            </div>
+
+            <!-- Título de Boas-Vindas -->
+            <p class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-1">Recompensa Exclusiva Liberada</p>
+            <h1 class="font-montserrat font-black text-white text-xl sm:text-2xl mb-2">
+                VOCÊ RECEBEU!
+            </h1>
+
+            <!-- Valor Monetário Destaque -->
+            <div class="my-4">
+                <span class="font-montserrat font-black text-4xl sm:text-5xl text-ttkGold gold-glow tracking-tight">
+                    R$ 110,00
+                </span>
+            </div>
+
+            <!-- Subtítulo e Instrução -->
+            <p class="text-gray-300 text-sm leading-relaxed mb-4 px-2">
+                Baixe o <strong class="text-white font-bold">TikTok Lite</strong> agora e crie uma <strong class="text-ttkCyan">nova conta</strong> para resgatar e sacar via <strong class="text-pixGreen">PIX instantâneo</strong>.
+            </p>
+
+            <!-- Selo Pix Instantâneo -->
+            <div class="inline-flex items-center space-x-2 bg-pixGreen/10 border border-pixGreen/30 px-3 py-1.5 rounded-xl text-pixGreen text-xs font-semibold">
+                <i class="fa-solid fa-bolt text-sm"></i>
+                <span>Transferência via PIX em até 2 minutos</span>
+            </div>
+        </div>
+
+        <!-- Passos Simples para Resgatar -->
+        <div class="w-full glass-card rounded-2xl p-5 mb-6">
+            <h2 class="font-montserrat font-bold text-sm text-gray-300 uppercase tracking-wider mb-4 text-center">
+                Como sacar seus R$ 110,00 em 3 passos:
+            </h2>
+            
+            <div class="space-y-4">
+                <!-- Passo 1 -->
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-ttkMagenta/20 border border-ttkMagenta/40 flex items-center justify-center flex-shrink-0 text-ttkMagenta font-black text-sm">
+                        1
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Baixe o TikTok Lite</h3>
+                        <p class="text-xs text-gray-400">Clique no botão abaixo para ir direto à loja oficial.</p>
+                    </div>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-ttkCyan/20 border border-ttkCyan/40 flex items-center justify-center flex-shrink-0 text-ttkCyan font-black text-sm">
+                        2
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Cadastre uma nova conta</h3>
+                        <p class="text-xs text-gray-400">Crie seu perfil em menos de 1 minuto na plataforma.</p>
+                    </div>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="flex items-start space-x-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-ttkGold/20 border border-ttkGold/40 flex items-center justify-center flex-shrink-0 text-ttkGold font-black text-sm">
+                        3
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm">Gire a roleta e insira o PIX</h3>
+                        <p class="text-xs text-gray-400">Gire a roleta para desbloquear o valor total e informe sua chave PIX para saque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão CTA Principal (Fixo no Mobile ou Normal no Container) -->
+        <div class="w-full mb-4">
+            <a href="https://www.tiktok.com/d/4/ZS9fdTu6fxuLa-p6qk4/" target="_blank" rel="noopener noreferrer" 
+               class="btn-gradient animate-pulse-glow w-full py-4 px-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-2xl group transition-all duration-300 transform active:scale-95">
+                <span class="font-montserrat font-black text-white text-base sm:text-lg tracking-wide">
+                    BAIXAR TIKTOK LITE E SACAR R$ 110
+                </span>
+                <span class="text-[11px] font-semibold text-white/90 uppercase tracking-widest mt-1 flex items-center space-x-1">
+                    <span>VIA PIX INSTANTÂNEO</span>
+                    <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </span>
+            </a>
+        </div>
+
+        <!-- Garantias e Segurança -->
+        <div class="flex items-center justify-center space-x-6 text-gray-500 text-xs mt-2">
+            <div class="flex items-center space-x-1">
+                <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+                <span>Download Seguro</span>
+            </div>
+            <div class="flex items-center space-x-1">
+                <i class="fa-solid fa-check-double text-ttkCyan"></i>
+                <span>Verificado pelo TikTok</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full text-center py-4 px-4 text-xs text-gray-600 border-t border-white/5 mt-auto">
+        <p>© 2026 TikTok Lite Recompensas. Todos os direitos reservados.</p>
+        <p class="mt-1 text-[10px] text-gray-700">Promoção por tempo limitado exclusiva para novos usuários que realizarem o cadastro no aplicativo.</p>
+    </footer>
+
+    <!-- Modal / Notificação de Saques Recentes em Tempo Real (Simulado) -->
+    <div id="toast-notification" class="fixed bottom-4 left-4 right-4 max-w-sm mx-auto glass-card border border-emerald-500/40 rounded-2xl p-3 shadow-2xl flex items-center space-x-3 transform transition-all duration-500 opacity-0 translate-y-10 z-50 pointer-events-none">
+        <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 flex-shrink-0 font-bold text-lg">
+            <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+            <p class="text-xs font-bold text-white truncate" id="toast-name">João M. acabou de sacar</p>
+            <p class="text-[11px] text-emerald-400 font-semibold"><span id="toast-value">R$ 110,00</span> via PIX</p>
+        </div>
+        <span class="text-[10px] text-gray-400 whitespace-nowrap">Agora mesmo</span>
+    </div>
+
+    <!-- Scripts da Interatividade -->
+    <script>
+        // 1. Contador Regressivo de Urgência (09:59)
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration; // Reinicia o timer se chegar a zero
+                }
+            }, 1000);
+        }
+
+        // 2. Simulador de Notificações Pop-up de Saques ao Vivo
+        const fakeUsers = [
+            "Matheus S.", "Ana Paula R.", "Lucas G.", "Carla F.", 
+            "Gabriel V.", "Fernanda M.", "Bruno K.", "Beatriz C.", 
+            "Rodrigo P.", "Camila T.", "Thiago H.", "Juliana O."
+        ];
+
+        function showRecentWithdrawal() {
+            const toast = document.getElementById('toast-notification');
+            const nameEl = document.getElementById('toast-name');
+            
+            // Seleciona um nome aleatório da lista
+            const randomUser = fakeUsers[Math.floor(Math.random() * fakeUsers.length)];
+            nameEl.textContent = `${randomUser} acabou de sacar`;
+
+            // Mostra o toast com animação
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            // Esconde após 4 segundos
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // Executar no carregamento da página
+        window.onload = function () {
+            // Inicia o timer de 9 minutos e 59 segundos
+            const tenMinutes = 60 * 9 + 59;
+            const display = document.querySelector('#timer');
+            startTimer(tenMinutes, display);
+
+            // Exibe o primeiro toast após 2 segundos e depois a cada 7-12 segundos
+            setTimeout(showRecentWithdrawal, 2000);
+            setInterval(() => {
+                showRecentWithdrawal();
+            }, Math.floor(Math.random() * (12000 - 7000 + 1)) + 7000);
+        };
+    </script>
+</body>
+</html>
